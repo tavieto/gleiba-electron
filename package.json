@@ -4,7 +4,7 @@
   "description": "Aplicação para agilizar coleta de e-mails institucionais de alunos da rede estadual da Bahia.",
   "main": "index.js",
   "scripts": {
-    "test": "electron ."
+    "start": "electron ."
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/tavieto/gleiba-electron#readme",
   "dependencies": {
-    "electron": "^9.1.0",
     "formidable": "^1.2.2",
     "jquery": "^3.5.1",
     "xlsx": "^0.16.3"
+  },
+  "devDependencies": {
+    "electron": "^9.1.0"
   }
 }
