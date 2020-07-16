@@ -12,7 +12,7 @@ async function capture() {
     input.sendKeys(Key.SPACE)
 
     try {
-        email = await driver.wait(until.elementLocated(By.tagName('b')), 1000).getText()
+        email = await driver.wait(until.elementLocated(By.tagName('b')), 2500).getText()
     } catch {
         email = 'Não encontrado'
     }
