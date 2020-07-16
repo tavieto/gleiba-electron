@@ -24,12 +24,12 @@
     "url": "https://github.com/tavieto/gleiba-electron/issues"
   },
   "homepage": "https://github.com/tavieto/gleiba-electron#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^9.1.0",
     "formidable": "^1.2.2",
     "jquery": "^3.5.1",
+    "selenium-webdriver": "^4.0.0-alpha.7",
     "xlsx": "^0.16.3"
-  },
-  "devDependencies": {
-    "electron": "^9.1.0"
   }
 }

@@ -2,14 +2,30 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Gleiba</title>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node<script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <form action="file-upload" method="POST" enctype="multipart/form-data">
+        <input type="file" id="file-to-upload" accept=".xlsx"><br>
+        <input type="submit" id="submit-file">
+    </form>
+
+    <caption>Coluna</caption>
+    <input type="text" id="col">
+
+    <caption>Linha inicial</caption>
+    <input type="number" id="linha-inicial">
+
+    <caption>Linha final</caption>
+    <input type="number" id="linha-final">
+
+    <button id="insert-data">Inserir dados</button>
+    <button id="start">Começar</button>
+
+    <script src="./scripts/modules.js"></script>
+    <script src="./scripts/sheet.js"></script>
+    <script src="./scripts/capture.js"></script>
   </body>
 </html>
