@@ -2,7 +2,7 @@
   "name": "gleiba",
   "version": "0.0.1",
   "description": "Aplicação para agilizar coleta de e-mails institucionais de alunos da rede estadual da Bahia.",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
