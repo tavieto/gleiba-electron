@@ -1,23 +1,36 @@
-//const { Builder, Key, By, until, Options } = require('selenium-webdriver')
-
 async function capture() {
     let driver = new Builder().forBrowser('chrome').build()
     await driver.get('http://consultaaluno.educacao.ba.gov.br/')
 
-    let input = await (await driver).findElement(By.id('matricula'))
-    let email
-    let matricula = '9040434'
+    let current_row = initial_row
 
-    input.sendKeys(matricula)
-    input.sendKeys(Key.SPACE)
+    for(current_row; current_row <= final_row; current_row++) {
 
-    try {
-        email = await driver.wait(until.elementLocated(By.tagName('b')), 2500).getText()
-    } catch {
-        email = 'Não encontrado'
+        let address_cell = col + current_row
+        let cell = sheet[address_cell]
+        let value_cell = (cell ? cell.v : undefined)
+        let rm = value_cell
+
+        let input
+        
+        let email
+
+        input = await driver.findElement(By.id('matricula')).sendKeys(rm)
+        try {
+            email = await driver.wait(until.elementLocated(By.tagName('b')), 2500).getText()
+        } catch {
+            try{
+                input = await driver.findElement(By.id('matricula')).sendKeys(Key.SPACE)
+                email = await driver.wait(until.elementLocated(By.tagName('b')), 2500).getText()
+            } catch {
+                email = 'Não encontrado'
+            } 
+        }
+        add_sheet(email, current_row)
+        input = await driver.findElement(By.id('matricula')).clear()
     }
-    console.log(email)
-    input.clear()
+    nextSheet()
+    driver.quit()
 }
 
 $(document).ready(() => {
