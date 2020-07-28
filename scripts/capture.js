@@ -1,7 +1,10 @@
-async function capture() {
-    let driver = new Builder().forBrowser('chrome').build()
+var driver
+async function create_browser() {
+    driver = new Builder().forBrowser('chrome').build()
     await driver.get('http://consultaaluno.educacao.ba.gov.br/')
+}
 
+async function capture() {
     let current_row = initial_row
 
     for(current_row; current_row <= final_row; current_row++) {
@@ -29,12 +32,28 @@ async function capture() {
         add_sheet(email, current_row)
         input = await driver.findElement(By.id('matricula')).clear()
     }
-    nextSheet()
-    driver.quit()
+    next_sheet()
 }
 
 $(document).ready(() => {
     $('#start').click(() => {
-        capture();
+        async function start() {
+            console.log("start")
+
+            await create_browser()
+
+            let actually_sheet = index -1
+            while(actually_sheet < max_index) {
+                
+                console.log("capture")
+                await capture()
+                actually_sheet++
+            }
+            driver.quit()
+            create_spreadsheet()
+        }
+        
+        start()
+
     })
 })

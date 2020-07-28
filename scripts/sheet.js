@@ -1,14 +1,13 @@
 var col = 'B'
 var col_rm = 'C'
-var initial_row = 3
-var final_row = 43
+var initial_row = 2
+var final_row
 
 $(document).ready(() => {
 
     $('#insert-data').click(() => {
         col = $('#col').val()
         initial_row = $('#linha-inicial').val()
-        final_row = $('#linha-final').val()
     })
 
     $('#submit-file').submit(() =>{
@@ -20,20 +19,44 @@ $(document).ready(() => {
 const spreadsheet = XLSX.readFile(usr + '/Desktop/spreadsheet.xlsx')
 
 var sheet
-let index = 0
-let max_index = spreadsheet.SheetNames.length
+var index = 0
+var max_index = spreadsheet.SheetNames.length
 
-function nextSheet() {
+function next_sheet() {
     const name_spreadsheet = spreadsheet.SheetNames[index]
     sheet = spreadsheet.Sheets[name_spreadsheet]
     if(index < max_index) {
         index++
-    } else {
-        create_spreadsheet()
+        what_final_row()
     }
 }
 
-nextSheet()
+next_sheet()
+
+
+function what_final_row() {
+    let how_many_cell = 0
+    let while_condition = true
+    let current_row = initial_row
+    do {
+        let address_cell
+
+        address_cell = col + current_row
+
+        if(sheet[address_cell] != undefined) {
+            how_many_cell++
+            
+        } else {
+            while_condition = false
+            final_row = initial_row + (how_many_cell - 1)
+        }
+
+        current_row++
+
+    } while(while_condition)
+}
+
+what_final_row()
 
 function add_sheet(value_cell, current_row) {
     let address_cell = col_rm + current_row
@@ -45,8 +68,13 @@ function add_sheet(value_cell, current_row) {
         h: value_cell,
         w: value_cell
     }
+
+    let refe = "!ref"
+    sheet[refe] = "A1:" + address_cell
+    
 }
 
 function create_spreadsheet(){
+    console.log(spreadsheet)
     XLSX.writeFile(spreadsheet, dir + '/result.xlsx')
 }
