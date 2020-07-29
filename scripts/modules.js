@@ -1,3 +1,4 @@
+require('chromedriver')
 const { Builder, Key, By, until, Options } = require('selenium-webdriver')
 const form = require('formidable')
 const XLSX = require('xlsx')
