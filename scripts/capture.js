@@ -18,6 +18,9 @@ async function capture() {
         
         let email
 
+        await driver.findElement(By.id('optMatricula')).click()
+
+        console.log(rm)
         input = await driver.findElement(By.id('matricula')).sendKeys(rm)
         try {
             email = await driver.wait(until.elementLocated(By.tagName('b')), 2500).getText()
