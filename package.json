@@ -28,7 +28,7 @@
     "formidable": "^1.2.2",
     "jquery": "^3.5.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
-    "xlsx": "^0.16.3"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "electron": "^9.4.4"
